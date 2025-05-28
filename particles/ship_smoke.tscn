@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://eepsjrb7aven" path="res://Textures/smoke_07.png" id="1_o6vak"]
 
 [sub_resource type="Gradient" id="Gradient_oxh82"]
-colors = PackedColorArray(0.893333, 0.893333, 0.893333, 1, 0.154876, 0.154876, 0.154876, 1)
+colors = PackedColorArray(0.893333, 0.893333, 0.893333, 1, 0.152941, 0.152941, 0.152941, 0)
 metadata/_snap_enabled = true
 
 [node name="Ship Smoke" type="CPUParticles2D"]

@@ -1,27 +1,40 @@
 [gd_scene load_steps=5 format=3 uid="uid://cuj3qhpawx6vs"]
 
-[ext_resource type="Material" uid="uid://bj2aagikxbkd1" path="res://materials/explosion_particles.tres" id="1_ascsd"]
 [ext_resource type="Texture2D" uid="uid://crt0knavf2tat" path="res://Textures/magic_05.png" id="1_w6ybu"]
 [ext_resource type="Texture2D" uid="uid://do5ioamo2xdhe" path="res://Textures/circle_02.png" id="2_o38y3"]
-[ext_resource type="Material" uid="uid://bp6ixsyvsob4u" path="res://materials/circle_explosion.tres" id="3_0tv7p"]
 
-[node name="Explosion Particles" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_w6uki"]
+colors = PackedColorArray(1, 1, 1, 0.878431, 0.162066, 0.162066, 0.162066, 1)
 
-[node name="Star Explosion" type="GPUParticles2D" parent="."]
+[sub_resource type="Gradient" id="Gradient_kr5mg"]
+offsets = PackedFloat32Array(0, 0.966887)
+colors = PackedColorArray(0.559174, 0.559174, 0.559174, 0.456954, 0.559174, 0.559174, 0.559174, 0.456954)
+
+[node name="Explosion Particles" type="CPUParticles2D"]
+
+[node name="Star Explosion" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 4
-process_material = ExtResource("1_ascsd")
+lifetime = 1.8
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
 texture = ExtResource("1_w6ybu")
-one_shot = true
-explosiveness = 0.9
-fixed_fps = 60
+spread = 0.0
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_w6uki")
 
-[node name="Circle Explosion" type="GPUParticles2D" parent="."]
+[node name="Circle Explosion" type="CPUParticles2D" parent="."]
+visible = false
+scale = Vector2(1e-05, 1e-05)
 emitting = false
-amount = 4
-process_material = ExtResource("3_0tv7p")
-texture = ExtResource("2_o38y3")
-lifetime = 1.5
+amount = 1
+lifetime = 1.2
 one_shot = true
 explosiveness = 0.9
 fixed_fps = 60
+draw_order = 1
+texture = ExtResource("2_o38y3")
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_kr5mg")
