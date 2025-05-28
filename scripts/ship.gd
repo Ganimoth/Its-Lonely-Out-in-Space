@@ -23,26 +23,30 @@ var is_dead: bool = false
 var is_restarting: bool = false
 var can_control: bool = true
 
+# Keyboard rotation variables
+var rotation_speed: float = 180.0  # degrees per second
+
 func _ready():
-	#ship_smoke.rotation_degrees = 90
 	ship_smoke.emitting = false
 	ship_smoke.modulate = Color(2, 2, 2)
 	respawn_point = global_position
 	is_dead = true
 
-func _process(_delta):
+func _process(delta):
 	if is_dead:
 		return
 	
-	var mouse_position: Vector2 = get_global_mouse_position()
-	look_at(mouse_position)
-	rotation_degrees += 90
-	
+	# Handle keyboard rotation
+	if Input.is_action_pressed("rotate_left") and can_control:
+		rotation_degrees -= rotation_speed * delta
+	if Input.is_action_pressed("rotate_right") and can_control:
+		rotation_degrees += rotation_speed * delta
+		
 	if Input.is_action_pressed("attack") and can_shoot and GUI.fuel > 0 and can_control:
 		shoot_cooldown()
 		var projectile: Area2D = projectile_scene.instantiate()
 		projectile.global_position = global_position
-		projectile.rotation_degrees += 90
+		projectile.rotation_degrees = rotation_degrees
 		add_sibling(projectile)
 		GUI.fuel -= 50
 		laser_SFX.play()

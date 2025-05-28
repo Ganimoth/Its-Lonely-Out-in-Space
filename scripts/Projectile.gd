@@ -9,8 +9,8 @@ var hit_particles: PackedScene = preload("res://particles/projectile_particles.t
 var is_alive: bool = true
 
 func _ready():
-	look_at(get_global_mouse_position())
-	rotation_degrees += 90
+	# No longer using mouse position - rotation is set by the ship when spawning
+	# The rotation is already set in the ship script, so we don't need to change it here
 	await get_tree().create_timer(5).timeout
 	queue_free()
 
