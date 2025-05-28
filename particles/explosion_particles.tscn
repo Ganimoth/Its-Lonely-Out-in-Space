@@ -14,7 +14,7 @@ colors = PackedColorArray(0.559174, 0.559174, 0.559174, 0.456954, 0.559174, 0.55
 
 [node name="Star Explosion" type="CPUParticles2D" parent="."]
 emitting = false
-lifetime = 1.8
+lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
